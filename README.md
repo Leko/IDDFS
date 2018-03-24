@@ -1,4 +1,6 @@
 # IDDFS
+[![CircleCI](https://circleci.com/gh/Leko/IDDFS.svg?style=svg)](https://circleci.com/gh/Leko/IDDFS)
+
 Iterative deepening depth-first search (IDDFS) for JavaScript
 
 ## Install
