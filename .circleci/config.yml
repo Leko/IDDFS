@@ -27,6 +27,7 @@ jobs:
       - run: npm run lint
       - run: npm run flow
       - run: npm test
+      - run: bash <(curl -s https://codecov.io/bash)
 
   node-v4:
     <<: *base
