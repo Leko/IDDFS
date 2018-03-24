@@ -15,7 +15,7 @@ export default class Strategy<T> {
   expand: (T) => Array<T>
   extractId: (T) => NodeId
 
-  constructor(options: StrategyOptions<T>) {
+  constructor (options: StrategyOptions<T>) {
     this.isGoal = options.isGoal
     this.expand = options.expand
     this.extractId = options.extractId
@@ -31,4 +31,3 @@ export default class Strategy<T> {
     return index < 0 ? null : index
   }
 }
- 

@@ -12,7 +12,7 @@ const defaults = {
   maxDepth: Infinity,
 }
 
-async function dls<T>(node: T, strategy: Strategy<T>, depthLimit: number, visited: Array<NodeId> = []): Promise<?T> {
+async function dls<T> (node: T, strategy: Strategy<T>, depthLimit: number, visited: Array<NodeId> = []): Promise<?T> {
   const depth = visited.length
   if (depthLimit > 5) {
     return null
