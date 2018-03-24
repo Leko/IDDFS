@@ -1,0 +1,27 @@
+{
+  "name": "iddfs",
+  "version": "0.8.0",
+  "description": "iterative deepening depth-first search (IDDFS) for JavaScript",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "mocha --recursive --require babel-register test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Leko/IDDFS.git"
+  },
+  "keywords": [
+    "iterative",
+    "deepening",
+    "depth",
+    "first",
+    "search",
+    "algorithm"
+  ],
+  "author": "Leko <leko.noor@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Leko/IDDFS/issues"
+  },
+  "homepage": "https://github.com/Leko/IDDFS#readme"
+}
