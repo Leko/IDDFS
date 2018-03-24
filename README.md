@@ -2,6 +2,7 @@
 [![npm](https://img.shields.io/npm/v/iddfs.svg)](https://www.npmjs.com/package/iddfs)
 [![license](https://img.shields.io/github/license/Leko/IDDFS.svg)](https://opensource.org/licenses/MIT)
 [![CircleCI](https://circleci.com/gh/Leko/IDDFS.svg?style=svg)](https://circleci.com/gh/Leko/IDDFS)
+[![codecov](https://codecov.io/gh/Leko/IDDFS/branch/master/graph/badge.svg)](https://codecov.io/gh/Leko/IDDFS)
 
 Iterative deepening depth-first search (IDDFS) for JavaScript
 
