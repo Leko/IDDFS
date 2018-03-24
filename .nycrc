@@ -1,0 +1,8 @@
+{
+  "cache": true,
+  "all": true,
+  "reporter": [
+    "lcov",
+    "text"
+  ]
+}
