@@ -7,7 +7,7 @@ export type StrategyOptions<T> = {
   isGoal: (T) => boolean,
   expand: (T) => Array<T>,
   extractId: (T) => NodeId,
-  shouldContinue: (T, number, number) => boolean,
+  shouldContinue?: (T, number, number) => boolean,
 }
 
 export default class Strategy<T> {
@@ -15,13 +15,13 @@ export default class Strategy<T> {
   isGoal: (T) => boolean
   expand: (T) => Array<T>
   extractId: (T) => NodeId
-  customShouldContinue: (T, number, number) => boolean
+  customShouldContinue: ?(T, number, number) => boolean
 
   constructor (options: StrategyOptions<T>) {
     this.isGoal = options.isGoal
     this.expand = options.expand
     this.extractId = options.extractId
-    this.customShouldContinue = options.shouldContinue
+    this.customShouldContinue = options.shouldContinue || null
     this.customIsVisited = options.isVisited || null
   }
 
