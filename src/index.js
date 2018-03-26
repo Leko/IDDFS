@@ -42,7 +42,7 @@ export default async function search <T> (op: Option<T>): Promise<?T> {
   const { initialDepth, maxDepth, initialNode, ...strategyOptions } = { ...defaults, ...op }
   const strategy = new Strategy((strategyOptions: StrategyOptions<T>))
 
-  for (let depthLimit = initialDepth; depthLimit < maxDepth; depthLimit++) {
+  for (let depthLimit = initialDepth; depthLimit <= maxDepth; depthLimit++) {
     const found = await dls(initialNode, strategy, depthLimit)
     if (found !== null) {
       return found
