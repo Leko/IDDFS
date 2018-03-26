@@ -67,6 +67,7 @@ For more details, please refer out [tests](https://github.com/Leko/IDDFS/tree/ma
 |extractId|Yes|`(node: any) => string \| number`|A function returns identifier of node|
 |initialDepth|-|`number`|Initial depth. Defaults is `0`|
 |maxDepth|-|`number`|Max depth. Defaults is `Infinity`|
+|shouldContinue|-|`(node: T, depth: number, depthLimit: number) => boolean`|Advanced option. It must return boolean that whether it should continue search or not. Defaults returns always `true`|
 |isVisited|-|`(node: any, Array<string \| number>) => ?number`|Advanced option. It must returns visited depth when node already visited. Otherwise, it must returns null|
 
 ## Contribution
