@@ -60,5 +60,5 @@ describe('8 puzzle (with branch and bound)', async () => {
       maxDepth: COST,
     })
     assert.equal(found, goal)
-  })
+  }).timeout(5000)
 })
