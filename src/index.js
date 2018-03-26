@@ -17,6 +17,9 @@ async function dls<T> (node: T, strategy: Strategy<T>, depthLimit: number, visit
   if (depth === depthLimit) {
     return strategy.isGoal(node) ? node : null
   }
+  if (!strategy.shouldContinue(node, depth, depthLimit)) {
+    return null
+  }
 
   const nodes: Array<T> = strategy.expand(node)
   for (let child of nodes) {
@@ -26,7 +29,6 @@ async function dls<T> (node: T, strategy: Strategy<T>, depthLimit: number, visit
       continue
     }
 
-    // TODO: 枝刈り
     const node = await dls(child, strategy, depthLimit, visited.concat([id]))
     if (node !== null) {
       return node
