@@ -14,9 +14,6 @@ const defaults = {
 
 async function dls<T> (node: T, strategy: Strategy<T>, depthLimit: number, visited: Array<NodeId> = []): Promise<?T> {
   const depth = visited.length
-  if (depthLimit > 5) {
-    return null
-  }
   if (depth === depthLimit) {
     return strategy.isGoal(node) ? node : null
   }
