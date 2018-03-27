@@ -1,4 +1,6 @@
 # IDDFS
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Leko/IDDFS.svg)](https://greenkeeper.io/)
 [![npm](https://img.shields.io/npm/v/iddfs.svg)](https://www.npmjs.com/package/iddfs)
 [![license](https://img.shields.io/github/license/Leko/IDDFS.svg)](https://opensource.org/licenses/MIT)
 [![CircleCI](https://circleci.com/gh/Leko/IDDFS.svg?style=svg)](https://circleci.com/gh/Leko/IDDFS)
