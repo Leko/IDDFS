@@ -3,7 +3,6 @@ import assert from 'assert'
 import { describe, it } from 'mocha'
 import sinon from 'sinon'
 import iddfs from '../src/index'
-import { type NodeId } from '../src/Strategy'
 
 describe('Simple graph', () => {
   const A = 'A'
