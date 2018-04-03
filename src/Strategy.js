@@ -8,6 +8,7 @@ export type StrategyOptions<T> = {
   expand: (T) => Array<T>,
   extractId: (T) => NodeId,
   shouldContinue?: (T, number, number) => boolean,
+  onVisit?: (T, number, Array<NodeId>) => Promise<void>,
 }
 
 export default class Strategy<T> {
@@ -16,6 +17,7 @@ export default class Strategy<T> {
   expand: (T) => Array<T>
   extractId: (T) => NodeId
   customShouldContinue: ?(T, number, number) => boolean
+  customOnVisit: ?(T, number, Array<NodeId>) => Promise<void>
 
   constructor (options: StrategyOptions<T>) {
     this.isGoal = options.isGoal
@@ -23,6 +25,7 @@ export default class Strategy<T> {
     this.extractId = options.extractId
     this.customShouldContinue = options.shouldContinue || null
     this.customIsVisited = options.isVisited || null
+    this.customOnVisit = options.onVisit || null
   }
 
   shouldContinue (node: T, depth: number, depthLimit: number): boolean {
@@ -40,5 +43,11 @@ export default class Strategy<T> {
 
     const index = visited.indexOf(this.extractId(node))
     return index < 0 ? null : index
+  }
+
+  onVisit (node: T, depth: number, visited: Array<NodeId>): void {
+    if (this.customOnVisit) {
+      this.customOnVisit(node, depth, visited)
+    }
   }
 }
