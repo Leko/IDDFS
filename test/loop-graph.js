@@ -1,17 +1,24 @@
 // @flow
-import assert from 'assert'
-import { describe, it } from 'mocha'
-import iddfs from '../src/index'
+import assert from "assert";
+import { describe, it } from "mocha";
+import iddfs from "../src/index";
 
-describe('Looped graph', () => {
-  const A = 'A'
-  const B = 'B'
-  const C = 'C'
-  const D = 'D'
-  const E = 'E'
-  const F = 'F'
-  const G = 'G'
-  type Node = typeof A | typeof B | typeof C | typeof D | typeof E | typeof F | typeof G
+describe("Looped graph", () => {
+  const A = "A";
+  const B = "B";
+  const C = "C";
+  const D = "D";
+  const E = "E";
+  const F = "F";
+  const G = "G";
+  type Node =
+    | typeof A
+    | typeof B
+    | typeof C
+    | typeof D
+    | typeof E
+    | typeof F
+    | typeof G;
 
   // [A]-[B]-[D]
   //  |\   `-[F]-,
@@ -26,18 +33,18 @@ describe('Looped graph', () => {
     D: [B],
     E: [A, F],
     F: [B, E],
-    G: [C],
-  }
+    G: [C]
+  };
 
-  it('Can resolve with shortest cost', async () => {
+  it("Can resolve with shortest cost", async () => {
     const found = await iddfs({
       initialNode: A,
       isGoal: (node: Node) => node === G,
       expand: (node: Node) => edges[node],
       extractId: (node: Node) => node,
-      maxDepth: 3,
-    })
+      maxDepth: 3
+    });
 
-    assert.equal(found, G)
-  })
-})
+    assert.equal(found, G);
+  });
+});
