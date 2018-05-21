@@ -1,6 +1,6 @@
 {
   "name": "iddfs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "iterative deepening depth-first search (IDDFS) for JavaScript",
   "main": "dist/index.js",
   "scripts": {
