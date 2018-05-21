@@ -15,7 +15,7 @@ npm i iddfs
 
 ### Requirement
 - Node.js
-  - 4+
+  - 6+
 - Browser support
   - TODO
 
