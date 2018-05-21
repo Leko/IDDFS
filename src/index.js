@@ -1,54 +1,62 @@
 // @flow
-import Strategy, { type NodeId, type StrategyOptions } from './Strategy'
+import Strategy, { type NodeId, type StrategyOptions } from "./Strategy";
 
 type Option<T> = {
   initialNode: T,
   initialDepth?: number,
-  maxDepth?: number,
-} & StrategyOptions<T>
+  maxDepth?: number
+} & StrategyOptions<T>;
 
 const defaults = {
   initialDepth: 0,
-  maxDepth: Infinity,
-}
+  maxDepth: Infinity
+};
 
-async function dls<T> (node: T, strategy: Strategy<T>, depthLimit: number, visited: Array<NodeId> = []): Promise<?T> {
-  const depth = visited.length
-  strategy.onVisit(node, depth, visited)
+async function dls<T>(
+  node: T,
+  strategy: Strategy<T>,
+  depthLimit: number,
+  visited: Array<NodeId> = []
+): Promise<?T> {
+  const depth = visited.length;
+  strategy.onVisit(node, depth, visited);
   if (depth === depthLimit) {
-    return strategy.isGoal(node) ? node : null
+    return strategy.isGoal(node) ? node : null;
   }
   if (!strategy.shouldContinue(node, depth, depthLimit)) {
-    return null
+    return null;
   }
 
-  const nodes: Array<T> = strategy.expand(node)
+  const nodes: Array<T> = strategy.expand(node);
   for (let child of nodes) {
-    const id: NodeId = strategy.extractId(child)
-    const visitedDepth = strategy.isVisited(child, visited)
+    const id: NodeId = strategy.extractId(child);
+    const visitedDepth = strategy.isVisited(child, visited);
     if (visitedDepth && visitedDepth >= depth) {
-      continue
+      continue;
     }
 
-    const node = await dls(child, strategy, depthLimit, visited.concat([id]))
+    const node = await dls(child, strategy, depthLimit, visited.concat([id]));
     if (node !== null) {
-      return node
+      return node;
     }
   }
 
-  return null
+  return null;
 }
 
-export default async function search <T> (op: Option<T>): Promise<?T> {
-  const { initialDepth, maxDepth, initialNode, ...strategyOptions } = { ...defaults, ...op }
-  const strategy = new Strategy((strategyOptions: StrategyOptions<T>))
+export default async function search<T>(op: Option<T>): Promise<?T> {
+  const { initialDepth, maxDepth, initialNode, ...strategyOptions } = {
+    ...defaults,
+    ...op
+  };
+  const strategy = new Strategy((strategyOptions: StrategyOptions<T>));
 
   for (let depthLimit = initialDepth; depthLimit <= maxDepth; depthLimit++) {
-    const found = await dls(initialNode, strategy, depthLimit)
+    const found = await dls(initialNode, strategy, depthLimit);
     if (found !== null) {
-      return found
+      return found;
     }
   }
 
-  return null
+  return null;
 }
