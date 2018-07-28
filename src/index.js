@@ -27,7 +27,7 @@ async function dls<T>(
     return null;
   }
 
-  const nodes: Array<T> = strategy.expand(node);
+  const nodes: Array<T> = await strategy.expand(node);
   for (let child of nodes) {
     const id: NodeId = strategy.extractId(child);
     const visitedDepth = strategy.isVisited(child, visited);
