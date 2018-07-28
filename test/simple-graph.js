@@ -2,7 +2,7 @@
 import assert from "assert";
 import { describe, it } from "mocha";
 import sinon from "sinon";
-import iddfs from "../src/index";
+import getNode, { getPath } from "../src/index";
 
 describe("Simple graph", () => {
   const A = "A";
@@ -22,39 +22,54 @@ describe("Simple graph", () => {
     E: [B, D]
   };
 
-  it("Can resolve with shortest cost", async () => {
-    const found = await iddfs({
-      initialNode: A,
-      isGoal: (node: Node) => node === E,
-      expand: (node: Node) => edges[node],
-      extractId: (node: Node) => node,
-      maxDepth: 3
-    });
+  describe("getNode", () => {
+    it("Can resolve with shortest cost", async () => {
+      const found = await getNode({
+        initialNode: A,
+        isGoal: (node: Node) => node === E,
+        expand: (node: Node) => edges[node],
+        extractId: (node: Node) => node,
+        maxDepth: 3
+      });
 
-    assert.equal(found, E);
+      assert.equal(found, E);
+    });
+    it("Must call onVisit every visited nodes", async () => {
+      const spy = sinon.spy();
+      const expected = [
+        ["A", 1, ["A"]],
+        ["A", 1, ["A"]],
+        ["B", 2, ["A", "B"]],
+        ["C", 2, ["A", "C"]],
+        ["A", 1, ["A"]],
+        ["B", 2, ["A", "B"]],
+        ["A", 3, ["A", "B", "A"]],
+        ["E", 3, ["A", "B", "E"]]
+      ];
+
+      await getNode({
+        initialNode: A,
+        isGoal: (node: Node) => node === E,
+        expand: (node: Node) => edges[node],
+        extractId: (node: Node) => node,
+        maxDepth: 3,
+        onVisit: spy
+      });
+
+      assert.deepEqual(spy.getCalls().map(c => c.args), expected);
+    });
   });
-  it("Must call onVisit every visited nodes", async () => {
-    const spy = sinon.spy();
-    const expected = [
-      ["A", 0, []],
-      ["A", 0, []],
-      ["B", 1, ["B"]],
-      ["C", 1, ["C"]],
-      ["A", 0, []],
-      ["B", 1, ["B"]],
-      ["A", 2, ["B", "A"]],
-      ["E", 2, ["B", "E"]]
-    ];
+  describe("getPath", () => {
+    it("Can resolve with shortest path", async () => {
+      const path = await getPath({
+        initialNode: A,
+        isGoal: (node: Node) => node === E,
+        expand: (node: Node) => edges[node],
+        extractId: (node: Node) => node,
+        maxDepth: 3
+      });
 
-    await iddfs({
-      initialNode: A,
-      isGoal: (node: Node) => node === E,
-      expand: (node: Node) => edges[node],
-      extractId: (node: Node) => node,
-      maxDepth: 3,
-      onVisit: spy
+      assert.deepStrictEqual(path, [A, B, E]);
     });
-
-    assert.deepEqual(spy.getCalls().map(c => c.args), expected);
   });
 });
