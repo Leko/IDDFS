@@ -9,17 +9,20 @@
 Iterative deepening depth-first search (IDDFS) for JavaScript
 
 ## Install
+
 ```
 npm i iddfs
 ```
 
 ### Requirement
-- Node.js
-  - 6+
-- Browser support
-  - TODO
+
+* Node.js
+  * 6+
+* Browser support
+  * TODO
 
 ## Usage
+
 ```js
 import iddfs from 'iddfs'
 
@@ -58,27 +61,46 @@ const found = await iddfs({
 console.log(found === G) // => true
 ```
 
+To find shortest path
+
+```js
+import { getPath } from 'iddfs'
+
+const path = await getPath({
+  initialNode: A,
+  isGoal: (node) => node === G,
+  expand: (node) => edges[node],
+  extractId: (node) => node,
+  maxDepth: 3,
+})
+
+console.log(path) // => ['A', 'C', 'G']
+```
+
 For more details, please refer out [tests](https://github.com/Leko/IDDFS/tree/master/test)
 
 ### Options
-|property|required|type|description|
-|--------|--------|----|-----------|
-|initialNode|Yes|`any`|Node visited at first|
-|isGoal|Yes|`(node: any) => boolean`|A function returns boolean what wanted node or not|
-|expand|Yes|`(node: any) => Array<node: any>`|A function returns array of children node id|
-|extractId|Yes|`(node: any) => string \| number`|A function returns identifier of node|
-|initialDepth|-|`number`|Initial depth. Defaults is `0`|
-|maxDepth|-|`number`|Max depth. Defaults is `Infinity`|
-|shouldContinue|-|`(node: T, depth: number, depthLimit: number) => boolean`|Advanced option. It must return boolean that whether it should continue search or not. Defaults returns always `true`|
-|isVisited|-|`(node: any, Array<string \| number>) => ?number`|Advanced option. It must returns visited depth when node already visited. Otherwise, it must returns null|
+
+| property       | required | type                                                      | description                                                                                                           |
+| -------------- | -------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| initialNode    | Yes      | `any`                                                     | Node visited at first                                                                                                 |
+| isGoal         | Yes      | `(node: any) => boolean`                                  | A function returns boolean what wanted node or not                                                                    |
+| expand         | Yes      | `(node: any) => Array<node: any>`                         | A function returns array of children node id                                                                          |
+| extractId      | Yes      | `(node: any) => string \| number`                         | A function returns identifier of node                                                                                 |
+| initialDepth   | -        | `number`                                                  | Initial depth. Defaults is `0`                                                                                        |
+| maxDepth       | -        | `number`                                                  | Max depth. Defaults is `Infinity`                                                                                     |
+| shouldContinue | -        | `(node: T, depth: number, depthLimit: number) => boolean` | Advanced option. It must return boolean that whether it should continue search or not. Defaults returns always `true` |
+| isVisited      | -        | `(node: any, Array<string \| number>) => ?number`         | Advanced option. It must returns visited depth when node already visited. Otherwise, it must returns null             |
 
 ## Contribution
-1. Fork this repo
-1. Create your branch like `fix-hoge-foo-bar` `add-hige`
-1. Write your code
-1. Pass all checks (`npm run lint && npm run flow && npm test`)
-1. Commit with [gitmoji](https://gitmoji.carloscuesta.me/)
-1. Submit pull request to `master` branch
+
+1.  Fork this repo
+1.  Create your branch like `fix-hoge-foo-bar` `add-hige`
+1.  Write your code
+1.  Pass all checks (`npm run lint && npm run flow && npm test`)
+1.  Commit with [gitmoji](https://gitmoji.carloscuesta.me/)
+1.  Submit pull request to `master` branch
 
 ## License
+
 This package under [MIT](https://opensource.org/licenses/MIT) license.
