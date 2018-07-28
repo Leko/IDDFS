@@ -1,7 +1,7 @@
 // @flow
 import assert from "assert";
 import { describe, it } from "mocha";
-import iddfs from "../src/index";
+import iddfs, { getPath } from "../src/index";
 
 describe("Looped graph", () => {
   const A = "A";
@@ -46,5 +46,16 @@ describe("Looped graph", () => {
     });
 
     assert.equal(found, G);
+  });
+  it("Can resolve with shortest path", async () => {
+    const path = await getPath({
+      initialNode: A,
+      isGoal: (node: Node) => node === G,
+      expand: (node: Node) => edges[node],
+      extractId: (node: Node) => node,
+      maxDepth: 3
+    });
+
+    assert.deepStrictEqual(path, ["A", "C", "G"]);
   });
 });
