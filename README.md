@@ -1,10 +1,11 @@
 # IDDFS
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Leko/IDDFS.svg)](https://greenkeeper.io/)
 [![npm](https://img.shields.io/npm/v/iddfs.svg)](https://www.npmjs.com/package/iddfs)
 [![license](https://img.shields.io/github/license/Leko/IDDFS.svg)](https://opensource.org/licenses/MIT)
 [![CircleCI](https://circleci.com/gh/Leko/IDDFS.svg?style=svg)](https://circleci.com/gh/Leko/IDDFS)
+[![Build status](https://ci.appveyor.com/api/projects/status/7atqxshqidfvw2sf/branch/master?svg=true)](https://ci.appveyor.com/project/Leko/iddfs/branch/master)
 [![codecov](https://codecov.io/gh/Leko/IDDFS/branch/master/graph/badge.svg)](https://codecov.io/gh/Leko/IDDFS)
+[![Greenkeeper badge](https://badges.greenkeeper.io/Leko/IDDFS.svg)](https://greenkeeper.io/)
 
 Iterative deepening depth-first search (IDDFS) for JavaScript
 
