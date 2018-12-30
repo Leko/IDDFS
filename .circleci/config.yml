@@ -16,13 +16,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          - v{{ .Environment.CIRCLECI_CACHE_VERSION }}-dependencies-{{ checksum "package.json" }}
+          - v{{ .Environment.CIRCLECI_CACHE_VERSION }}-dependencies-
       - run: npm install
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v{{ .Environment.CIRCLECI_CACHE_VERSION }}-dependencies-{{ checksum "package.json" }}
       - run: npm run lint
       - run: npm run flow
       - run: npm test
