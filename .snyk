@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.1
+version: v1.13.3
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -12,3 +12,11 @@ patch:
         patched: '2018-12-15T05:26:22.896Z'
     - '@babel/cli > chokidar > fsevents > node-pre-gyp > hawk > cryptiles > boom > hoek':
         patched: '2018-12-15T05:26:22.896Z'
+    - '@babel/cli > chokidar > fsevents > node-pre-gyp > hawk > hoek':
+        patched: '2018-12-30T12:30:05.650Z'
+    - '@babel/cli > chokidar > fsevents > node-pre-gyp > hawk > boom > hoek':
+        patched: '2018-12-30T12:30:05.650Z'
+    - '@babel/cli > chokidar > fsevents > node-pre-gyp > hawk > sntp > hoek':
+        patched: '2018-12-30T12:30:05.650Z'
+    - '@babel/cli > chokidar > fsevents > node-pre-gyp > hawk > cryptiles > boom > hoek':
+        patched: '2018-12-30T12:30:05.650Z'
