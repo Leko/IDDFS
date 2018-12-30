@@ -2,8 +2,8 @@ workflows:
   version: 2
   node-multi-build:
     jobs:
-      - node-v6
       - node-v8
+      - node-v10
       - node-latest
 
 version: 2
@@ -16,26 +16,26 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          - v{{ .Environment.CIRCLECI_CACHE_VERSION }}-dependencies-{{ checksum "package.json" }}
+          - v{{ .Environment.CIRCLECI_CACHE_VERSION }}-dependencies-
       - run: npm install
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v{{ .Environment.CIRCLECI_CACHE_VERSION }}-dependencies-{{ checksum "package.json" }}
       - run: npm run lint
       - run: npm run flow
       - run: npm test
       - run: bash <(curl -s https://codecov.io/bash)
 
-  node-v6:
-    <<: *base
-    docker:
-      - image: node:6
   node-v8:
     <<: *base
     docker:
       - image: node:8
+  node-v10:
+    <<: *base
+    docker:
+      - image: node:10
   node-latest:
     <<: *base
     docker:
