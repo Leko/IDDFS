@@ -2,8 +2,8 @@ workflows:
   version: 2
   node-multi-build:
     jobs:
-      - node-v6
       - node-v8
+      - node-v10
       - node-latest
 
 version: 2
@@ -28,14 +28,14 @@ jobs:
       - run: npm test
       - run: bash <(curl -s https://codecov.io/bash)
 
-  node-v6:
-    <<: *base
-    docker:
-      - image: node:6
   node-v8:
     <<: *base
     docker:
       - image: node:8
+  node-v10:
+    <<: *base
+    docker:
+      - image: node:10
   node-latest:
     <<: *base
     docker:
