@@ -1,8 +1,7 @@
 {
   "name": "iddfs",
   "version": "2.0.0",
-  "description":
-    "iterative deepening depth-first search (IDDFS) for JavaScript",
+  "description": "iterative deepening depth-first search (IDDFS) for JavaScript",
   "main": "dist/index.js",
   "scripts": {
     "precommit": "pretty-quick --staged",
@@ -59,6 +58,6 @@
   },
   "snyk": true,
   "dependencies": {
-    "snyk": "^1.119.0"
+    "snyk": "^1.189.0"
   }
 }
