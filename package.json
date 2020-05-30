@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/Leko/IDDFS#readme",
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
+    "@babel/cli": "^7.10.1",
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
